@@ -3,3 +3,4 @@ furo
 myst_parser
 sphinx-autoapi
 sphinx-autobuild
+tornado>=6.4.1 # not directly required, pinned by Snyk to avoid a vulnerability
