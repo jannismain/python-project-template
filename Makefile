@@ -32,7 +32,7 @@ doc-examples: $(DOC_EXAMPLES)
 $(DOC_EXAMPLES): uncopy-template copy-template
 	@echo "Recreating '$@'..."
 	@rm -rf "$@" && mkdir -p "$@"
-	init-python-project "$@" --user-name jannismain ${INIT_PYTHON_PROJECT_ARGS} --defaults --yes --verbose
+	init-python-project "$@" --user-name jannismain --email-address 14290527+jannismain@users.noreply.github.com ${INIT_PYTHON_PROJECT_ARGS} --defaults --yes --verbose
 	@cd $@ &&\
 		python -m venv .venv || echo "Couldn't setup virtual environment" &&\
 		. .venv/bin/activate &&\
