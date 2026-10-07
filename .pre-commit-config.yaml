@@ -2,20 +2,20 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.3
+    rev: v3.1.0
     hooks:
       - id: prettier
         types_or: [json, yaml, css, javascript]
         pass_filenames: false
   # black should have the final say on python formatting, so it comes last
   - repo: https://github.com/psf/black
-    rev: 23.9.1
+    rev: 26.10.0
     hooks:
       - id: black
         name: format code (black)
@@ -27,9 +27,9 @@ repos:
         language: system
         pass_filenames: false
         files: "^template/"
-        stages: [push]
+        stages: [pre-push]
   - repo: https://github.com/streetsidesoftware/cspell-cli
-    rev: v7.3.0
+    rev: v10.3.0
     hooks:
       - id: cspell
         name: check spelling (cspell)
@@ -42,9 +42,9 @@ repos:
             .vscode/cspell.json,
           ]
   - repo: https://github.com/bjd2385/pre-commit-gitlabci-lint
-    rev: v1.3.0
+    rev: v1.4.0
     hooks:
       - id: gitlabci-lint
         args: ["-p", "46207681"]  # project id is required, but any will do
-        entry: env GITLAB_TOKEN=w8i5Q1CaEpF57cqxezvG gitlabci-lint
+        entry: env GITLAB_TOKEN=glpat-sOM4KyL8f-iwPItnE6inPGM6MQpvOjEKdTo1b2ljeA8.01.171ig62bj gitlabci-lint
         files: "^\\.gitlab-ci\\.yml$"
