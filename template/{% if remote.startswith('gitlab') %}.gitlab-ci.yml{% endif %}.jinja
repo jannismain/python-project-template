@@ -14,9 +14,9 @@ test:
   script:
     - pip install .[test]
     - pytest --doctest-modules --cov --cov-config=pyproject.toml --cov-branch --cov-report term --cov-report html:build/coverage --junitxml=report.xml --cov-report xml
-    - pip install anybadge==1.9.0
+    - pip install anybadge==1.16.0
     - mkdir -p build/badges
-    - pip install radon==5.1.0
+    - pip install radon==6.0.1
     - make maintainability
     # generate a badge for the maintainability index with the total average of cyclomatic complexity as value
     - |
