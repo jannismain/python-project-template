@@ -1,3 +1,0 @@
-[submodule "template/{% if docs_template == 'sphinx-fhg-iis' %}docs{% endif %}"]
-	path = "template/{% if docs_template == 'sphinx-fhg-iis' %}docs{% endif %}"
-	url = https://git01.iis.fhg.de/mkj/sphinx_template

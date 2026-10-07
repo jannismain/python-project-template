@@ -9,10 +9,5 @@ While frameworks are not required to implement a CLI in Python, they might provi
 - [click]
 - [typer]: based on click, integrates with type annotations
 
-## References
-
-There is a section on [Python CLIs](https://intern.iis.fhg.de/x/IeVsBg) in the [IIS Knowledge Base][].
-
-[iis knowledge base]: https://s.fhg.de/iis-kb
 [click]: https://click.palletsprojects.com/
 [typer]: https://typer.tiangolo.com/

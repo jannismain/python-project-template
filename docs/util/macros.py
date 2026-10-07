@@ -19,16 +19,17 @@ import yaml
 from mkdocs_macros.plugin import MacrosPlugin
 
 # patch for private gitlab instance
-base_url = "https://git01.iis.fhg.de"
-pymdownx.magiclink.PROVIDER_INFO["gitlab"].update(
-    {
-        "url": base_url,
-        "issue": "%s/{}/{}/issues/{}" % base_url,
-        "pull": "%s/{}/{}/merge_requests/{}" % base_url,
-        "commit": "%s/{}/{}/commit/{}" % base_url,
-        "compare": "%s/{}/{}/compare/{}...{}" % base_url,
-    }
-)
+# TODO: Check if public GitLab needs any adjustments here
+# base_url = "https://gitlab.com"
+# pymdownx.magiclink.PROVIDER_INFO["gitlab"].update(
+#     {
+#         "url": base_url,
+#         "issue": "%s/{}/{}/issues/{}" % base_url,
+#         "pull": "%s/{}/{}/merge_requests/{}" % base_url,
+#         "commit": "%s/{}/{}/commit/{}" % base_url,
+#         "compare": "%s/{}/{}/compare/{}...{}" % base_url,
+#     }
+# )
 
 root = pathlib.Path(__file__).parent.parent.parent
 

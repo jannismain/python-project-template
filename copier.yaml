@@ -98,22 +98,10 @@ docs:
 
     If you are not sure which one to use, simply go with the default 😉.
 
-docs_template:
-  type: str
-  choices:
-    Fraunhofer IIS Sphinx Template: sphinx-fhg-iis
-    None: none
-  default: "none"
-  when: "{{ docs == 'sphinx' }}"
-  help: Which documentation template do you want to use?
-  explanation: |
-    See [Fraunhofer IIS Sphinx Template](https://git01.iis.fhg.de/sch/sphinx_template/).
-
 remote:
   choices:
     GitHub: github
-    FHG Gitlab: gitlab-fhg
-    IIS Gitlab: gitlab-iis
+    Gitlab: gitlab
   help: Which platform will your project be hosted on?
   default: "github"
   explanation: |
@@ -134,14 +122,13 @@ user_name:
 email_address:
   type: str
   help: Email address of the author
-  default: "{{ user_name|lower }}@iis.fhg.de"
   explanation: |
     This is the email address for the author of the project.
 
 remote_url:
   type: str
   help: URL of the remote repository
-  default: git@{% if remote=='github' %}github.com{% elif remote=='gitlab-iis' %}git01.iis.fhg.de{% elif remote=='gitlab-fhg' %}gitlab.cc-asp.fraunhofer.de{% endif %}:{{user_name}}/{{project_name | lower | replace(' ', '-')}}.git
+  default: git@{% if remote=='github' %}github.com{% elif remote=='gitlab' %}gitlab.com{% endif %}:{{user_name}}/{{project_name | lower | replace(' ', '-')}}.git
   expected: SSH URL to your remote repository
   explanation: |
     Apart from configuring the git remote for you, the remote URL is required to determine other values, such as

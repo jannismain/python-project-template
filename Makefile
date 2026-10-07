@@ -2,7 +2,7 @@
 install: ## install all dependencies & development requirements
 	@pip install -e .[dev,test,doc]
 
-PUBLISHED_EXAMPLES = build/examples/github build/examples/gitlab_fhg build/examples/gitlab_iis build/examples/gitlab_iis_sphinx
+PUBLISHED_EXAMPLES = build/examples/github build/examples/gitlab build/examples/gitlab_sphinx
 DOC_EXAMPLES = docs/examples/mkdocs docs/examples/sphinx docs/examples/default docs/examples/minimal docs/examples/full docs/examples/gitlab
 
 .PHONY: examples $(PUBLISHED_EXAMPLES) example-setup example-setup-commit example-setup-local example examples-clean
@@ -11,12 +11,11 @@ examples: ## build all published examples
 examples: $(PUBLISHED_EXAMPLES)
 
 INIT_PYTHON_PROJECT_ARGS=--project-name="Sample Project"
-build/examples/%: EXAMPLE_DIR:=$@
-build/examples/github: INIT_PYTHON_PROJECT_ARGS+=--user-name=jannismain --remote=github --remote-url=git@github.com:jannismain/python-project-template-example.git
-build/examples/gitlab%: INIT_PYTHON_PROJECT_ARGS+=--user-name mkj
-build/examples/gitlab_fhg: INIT_PYTHON_PROJECT_ARGS+=--remote=gitlab-fhg --remote-url=git@gitlab.cc-asp.fraunhofer.de:mkj/sample-project.git
-build/examples/gitlab_iis: INIT_PYTHON_PROJECT_ARGS+=--remote=gitlab-iis --remote-url=git@git01.iis.fhg.de:mkj/sample-project.git
-build/examples/gitlab_iis_sphinx: INIT_PYTHON_PROJECT_ARGS+=--remote=gitlab-iis --remote-url=git@git01.iis.fhg.de:mkj/sample-project-sphinx.git --docs=sphinx
+build/examples/%: EXAMPLE_DIR:=$@ INIT_PYTHON_PROJECT_ARGS+=--user-name=jannismain
+build/examples/github: INIT_PYTHON_PROJECT_ARGS+=--remote=github --remote-url=git@github.com:jannismain/python-project-template-example.git
+build/examples/gitlab%: INIT_PYTHON_PROJECT_ARGS+=--remote=gitlab
+build/examples/gitlab: INIT_PYTHON_PROJECT_ARGS+=--remote-url=git@gitlab.com:jannismain/python-project-template-example.git
+build/examples/gitlab_sphinx: INIT_PYTHON_PROJECT_ARGS+=--remote-url=git@gitlab.com:jannismain/python-project-template-example-sphinx.git --docs=sphinx
 
 $(PUBLISHED_EXAMPLES): uncopy-template link-template
 	@echo "Recreating '$@'..."
@@ -28,12 +27,12 @@ docs/examples/mkdocs: INIT_PYTHON_PROJECT_ARGS+=--docs mkdocs
 docs/examples/sphinx: INIT_PYTHON_PROJECT_ARGS+=--docs sphinx
 docs/examples/minimal: INIT_PYTHON_PROJECT_ARGS+=--docs none --no-precommit --no-bumpversion
 docs/examples/full: INIT_PYTHON_PROJECT_ARGS+=--docs mkdocs --precommit --bumpversion
-docs/examples/gitlab: INIT_PYTHON_PROJECT_ARGS+=--docs mkdocs --precommit --bumpversion --remote gitlab-iis
+docs/examples/gitlab: INIT_PYTHON_PROJECT_ARGS+=--docs mkdocs --precommit --bumpversion --remote gitlab
 doc-examples: $(DOC_EXAMPLES)
 $(DOC_EXAMPLES): uncopy-template copy-template
 	@echo "Recreating '$@'..."
 	@rm -rf "$@" && mkdir -p "$@"
-	init-python-project "$@" --user-name mkj ${INIT_PYTHON_PROJECT_ARGS} --defaults --yes --verbose
+	init-python-project "$@" --user-name jannismain ${INIT_PYTHON_PROJECT_ARGS} --defaults --yes --verbose
 	@cd $@ &&\
 		python -m venv .venv || echo "Couldn't setup virtual environment" &&\
 		. .venv/bin/activate &&\

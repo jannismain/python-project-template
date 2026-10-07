@@ -13,10 +13,10 @@
     The underlying template is built using [copier]. This means you can also use the copier template directly like this:
 
     ```{.sh .copy}
-    copier copy --trust https://git01.iis.fhg.de/mkj/project-template.git my_new_project
+    copier copy --trust https://github.com/jannismain/python-project-template.git my_new_project
     ```
 
     *Note: `--trust` is required because the template uses [tasks] to setup your git repository for you.*
 
-[tasks]: https://git01.iis.fhg.de/mkj/project-template/-/blob/main/copier.yaml
+[tasks]: https://github.com/jannismain/python-project-template/blob/6ac1d970b001aac6b63277677baf3ec7c9622a7c/copier.yaml#L184
 [copier]: https://github.com/copier-org/copier

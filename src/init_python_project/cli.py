@@ -29,15 +29,13 @@ class DocumentationTool(StrEnum):
 
 class DocumentationTemplate(StrEnum):
     "which documentation template to use"
-    sphinx_fhg_iis = "sphinx-fhg-iis"
     builtin = "none"
 
 
 class RemotePlatform(StrEnum):
     "which remote platform to configure"
     github = "github"
-    gitlab_fhg = "gitlab-fhg"
-    gitlab_iis = "gitlab-iis"
+    gitlab = "gitlab"
 
 
 def CustomOptional(_type=bool, help="", custom_flag: str | list = None, **kwargs):

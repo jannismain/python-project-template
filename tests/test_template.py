@@ -12,7 +12,7 @@ from pytest_venv import VirtualEnvironment
 template = yaml.safe_load(Path(__file__).parent.with_name("copier.yaml").read_text())
 SUPPORTED_REMOTES = template["remote"]["choices"].values()
 SUPPORTED_DOCS = template["docs"]["choices"].values()
-SUPPORTED_DOCS_TEMPLATES = template["docs_template"]["choices"].values()
+SUPPORTED_DOCS_TEMPLATES = ("none",)
 SUPPORTED_DOCS_TEMPLATES_COMBINATIONS = [
     t
     for t in itertools.product(SUPPORTED_DOCS, SUPPORTED_DOCS_TEMPLATES)
@@ -191,12 +191,6 @@ def test_remote_option(tmp_path: Path, remote: str):
         gitlab_ci_yml = tmp_path / ".gitlab-ci.yml"
         assert gitlab_ci_yml.is_file()
         check_call(["pre-commit", "run", "--all-files", "gitlabci-lint"], cwd=str(tmp_path))
-    if remote.endswith("iis"):
-        assert remote_url == f"git@git01.iis.fhg.de:{user_name}/wonderful-project.git"
-        assert "git01.iis.fhg.de" in readme_template_url
-    if remote.endswith("fhg"):
-        assert remote_url == f"git@gitlab.cc-asp.fraunhofer.de:{user_name}/wonderful-project.git"
-        assert "gitlab.cc-asp.fraunhofer.de" in readme_template_url
 
 
 @pytest.mark.parametrize("docs", SUPPORTED_DOCS)

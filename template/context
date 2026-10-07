@@ -16,7 +16,7 @@
 {% if remote == 'github' %}
 {% set domain_pages = 'github.io' %}
 {% set path_pipeline = '/actions?query=branch%3A' + default_branch %}
-{% elif remote == 'gitlab-iis' %}
+{% elif remote == 'gitlab' %}
 {% set domain_pages = domain %}
 {% elif remote == 'gitlab-fhg' %}
 {% set domain_pages = 'pages.fraunhofer.de' %}

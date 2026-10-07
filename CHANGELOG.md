@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - documentation of a known issue with `NoConsoleScreenBufferError` during runtime under Windows git-bash (provided by [@lieutdan13])
 - email address in pyproject.toml is now configurable (provided by to [@lieutdan13])
+- remove non-public Gitlab remotes (replace `gitlab-iis` and `gitlab-fhg` with public `gitlab`)
+- remove non-public doc templates (remove `sphinx-fhg-iis` template)
 
 ## [0.0.6] - 2023-10-12
 
