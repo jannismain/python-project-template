@@ -81,9 +81,9 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.magiclink:
       hide_protocol: True
-      provider: gitlab
-      user: mkj
-      repo: project-template
+      provider: github
+      user: jannismain
+      repo: python-project-template
       repo_url_shortener: True
       repo_url_shorthand: True
   - footnotes
