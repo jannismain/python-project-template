@@ -163,6 +163,7 @@ def cli(
         user_defaults=dict(
             user_name=check_output(["whoami"]).decode().strip() if user_name is None else user_name,
             project_name=target_path.name.replace("-", " ").replace("_", " ").title(),
+            email_address=email_address,
         ),
         defaults=defaults,
         overwrite=always_confirm,
