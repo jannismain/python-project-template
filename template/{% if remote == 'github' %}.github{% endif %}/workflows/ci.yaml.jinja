@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+        uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
       - name: Install project (including test requirements)
@@ -27,7 +27,7 @@ jobs:
       - run: pip install genbadge[coverage]
       - run: genbadge coverage -i coverage.xml -o build/coverage/coverage.svg
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: coverage
           path: build/coverage
@@ -35,8 +35,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+        uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
       - name: Build maintainability badge
@@ -48,7 +48,7 @@ jobs:
           [[ "$score" = E* ]] && color="orange"; [[ "$score" = F* ]] && color="orangered"
           python -m anybadge --label=Maintainability --value="$score" --color="$color" -f maintainability -o
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: maintainability
           path: maintainability.svg
@@ -57,8 +57,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+        uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
       - name: Install doc requirements
@@ -66,7 +66,7 @@ jobs:
       - name: Build docs
         run: make docs
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: docs
           path: build/docs/html
@@ -79,10 +79,10 @@ jobs:
     needs: [coverage, maintainability, docs]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - uses: actions/download-artifact@master
+        uses: actions/configure-pages@v6
+      - uses: actions/download-artifact@v8
         with:
           path: public
       - run: ls -lR public
@@ -90,9 +90,9 @@ jobs:
       - run: mv public/coverage/coverage.svg public/badges/.
       - run: mv public/docs/* public/. && rm -r public/docs || echo "no documentation found!"
       - name: Upload Pages
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v5
         with:
           path: public
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v5
