@@ -24,7 +24,8 @@ fp_template = Path(__file__).parent.parent
 
 required_static_data = dict(
     project_name="Sample Project",
-    user_name="mkj",
+    user_name="foo",
+    email_address="foo@example.com",
 )
 
 
@@ -143,8 +144,7 @@ def test_default_branch_option(tmp_path: Path):
         str(fp_template),
         str(tmp_path),
         data=dict(
-            project_name="Sample Project",
-            user_name="mkj",
+            **required_static_data,
         ),
         unsafe=True,
         defaults=True,
@@ -172,6 +172,7 @@ def test_remote_option(tmp_path: Path, remote: str):
             project_name=project_name,
             remote=remote,
             user_name=user_name,
+            email_address=f"{user_name}@example.com",
         ),
         unsafe=True,
         defaults=True,
